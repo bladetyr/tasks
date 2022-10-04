@@ -242,21 +242,18 @@ export function editOption(
                     : { ...question }
         );
     } else {
-        return questions.map(
-            (question: Question): Question =>
-                question.id === targetId
-                    ? {
-                          //eslint is stuck in a time loop and there's no way to fix it sorry
-                          //I can't fix it. You can try if you want but it's angry
-                          ...question,
-                          options: question.options.map((ele, indexxx) =>
-                              indexxx === targetOptionIndex
-                                  ? (ele = newOption)
-                                  : ele
-                          )
-                      }
-                    : { ...question }
-        );
+        return questions.map((question: Question) => {
+            if (question.id === targetId) {
+                return {
+                    ...question,
+                    options: question.options.map((ele, indexxx) =>
+                        indexxx === targetOptionIndex ? (ele = newOption) : ele
+                    )
+                };
+            } else {
+                return question;
+            }
+        });
     }
 }
 
