@@ -12,8 +12,8 @@ export function d6(): number {
 }
 
 export function TwoDice(): JSX.Element {
-    const [left, setLeft] = useState<number>(d6());
-    const [right, setRight] = useState<number>(d6());
+    const [left, setLeft] = useState<number>(2);
+    const [right, setRight] = useState<number>(3);
     //const [win, setWin] = useState<boolean>(false);
     //const [lose, setLose] = useState<boolean>(false);
 
@@ -36,7 +36,7 @@ export function TwoDice(): JSX.Element {
                 onClick={() => {
                     setLeft(d6);
                     //checkWin();
-                    console.log(left);
+                    //console.log(left);
                 }}
             >
                 Roll Left
@@ -46,7 +46,7 @@ export function TwoDice(): JSX.Element {
                 onClick={() => {
                     setRight(d6);
                     //checkWin();
-                    console.log(right);
+                    //console.log(right);
                 }}
             >
                 Roll Right
