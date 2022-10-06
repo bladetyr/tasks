@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 
 export function CycleHoliday(): JSX.Element {
-    const holiday = "April Fool's,Christmas,Easter,Halloween,Mischief Night";
-    const [currentHoliday, setCurrentHoliday] =
-        useState<string>("Mischief Night");
-    const [emoji, setEmojii] = useState<string>("🥚");
+    const holiday = "😈,🎄,🐇,🎃,🥚";
+    const [currentHoliday, setCurrentHoliday] = useState<string>("🎃");
 
     function alphabetical(): void {
         const list = holiday.split(",");
@@ -18,30 +16,16 @@ export function CycleHoliday(): JSX.Element {
     }
 
     function date(): void {
-        if (currentHoliday === "Mischief Night") {
-            setCurrentHoliday("Halloween");
-        } else if (currentHoliday === "Halloween") {
-            setCurrentHoliday("Christmas");
-        } else if (currentHoliday === "Christmas") {
-            setCurrentHoliday("April Fool's");
-        } else if (currentHoliday === "April Fool's") {
-            setCurrentHoliday("Easter");
-        } else if (currentHoliday === "Easter") {
-            setCurrentHoliday("Mischief Night");
-        }
-    }
-
-    function setEmoji(): void {
-        if (currentHoliday === "Halloween") {
-            setEmojii("🎃");
-        } else if (currentHoliday === "Mischief Night") {
-            setEmojii("🥚");
-        } else if (currentHoliday === "Easter") {
-            setEmojii("🐇");
-        } else if (currentHoliday === "April Fool's") {
-            setEmojii("😈");
-        } else {
-            setEmojii("🎄");
+        if (currentHoliday === "🥚") {
+            setCurrentHoliday("🎃");
+        } else if (currentHoliday === "🎃") {
+            setCurrentHoliday("🎄");
+        } else if (currentHoliday === "🎄") {
+            setCurrentHoliday("😈");
+        } else if (currentHoliday === "😈") {
+            setCurrentHoliday("🐇");
+        } else if (currentHoliday === "🐇") {
+            setCurrentHoliday("🥚");
         }
     }
 
@@ -49,8 +33,9 @@ export function CycleHoliday(): JSX.Element {
         <div>
             <Button
                 onClick={() => {
+                    console.log(currentHoliday);
                     alphabetical();
-                    setEmoji();
+                    console.log("New Holiday: ", currentHoliday);
                 }}
             >
                 {" "}
@@ -58,13 +43,14 @@ export function CycleHoliday(): JSX.Element {
             </Button>
             <Button
                 onClick={() => {
+                    console.log(currentHoliday);
                     date();
-                    setEmoji();
+                    console.log("New Holiday: ", currentHoliday);
                 }}
             >
                 Year
             </Button>
-            {emoji}
+            Holiday: {currentHoliday}
         </div>
     );
 }
