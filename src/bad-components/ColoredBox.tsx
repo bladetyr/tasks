@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 
 export const COLORS = ["red", "blue", "green"];
-const DEFAULT_COLOR_INDEX = 0;
 
 //prop time again? yes?
 //I think passing in colorIndex is fine but I don't think React is noticing that I changed the button color
