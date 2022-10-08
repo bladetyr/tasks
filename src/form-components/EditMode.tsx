@@ -16,37 +16,59 @@ export function EditMode(): JSX.Element {
         setIsStudent(event.target.checked);
     }
 
-    return (
-        <div>
-            <h3>Edit Mode</h3>
-            <Form.Check
-                type="checkbox"
-                id="isStudent"
-                label="Are you a student?"
-                checked={isStudent}
-                onChange={updateStudent}
-            />
-            <Form.Check
-                type="switch"
-                id="editCheck"
-                label="Toggle Edit Mode"
-                checked={dis}
-                onChange={updateDis}
-            />
-            <Form.Group controlId="formStudentName">
-                <Form.Label>Student:</Form.Label>
-                <Form.Control
-                    type="textbox"
-                    value={student}
-                    disabled={dis}
-                    onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                        setStudent(event.target.value)
-                    }
-                />
-            </Form.Group>
+    if (!dis) {
+        return (
             <div>
-                {student} is {isStudent ? "a student" : "not a student"}.
+                <h3>Edit Mode</h3>
+                <Form.Check
+                    inline
+                    type="checkbox"
+                    id="isStudent"
+                    label="Are you a student?"
+                    checked={isStudent}
+                    onChange={updateStudent}
+                />
+                <Form.Check
+                    inline
+                    type="switch"
+                    id="editCheck"
+                    label="Toggle Edit Mode"
+                    checked={dis}
+                    onChange={updateDis}
+                />
+                <Form.Group controlId="formStudentName">
+                    <Form.Label>Student:</Form.Label>
+                    <Form.Control
+                        type="textbox"
+                        placeholder="Your Name"
+                        value={student}
+                        disabled={dis}
+                        onChange={(
+                            event: React.ChangeEvent<HTMLInputElement>
+                        ) => setStudent(event.target.value)}
+                    />
+                </Form.Group>
+                <div>
+                    {student} is {!isStudent ? "a student" : "not a student"}.
+                </div>
             </div>
-        </div>
-    );
+        );
+    } else {
+        return (
+            <div>
+                <h3>Edit Mode</h3>
+                <Form.Check
+                    inline
+                    type="switch"
+                    id="editCheck"
+                    label="Toggle Edit Mode"
+                    checked={dis}
+                    onChange={updateDis}
+                />
+                <div>
+                    {student} is {isStudent ? "a student" : "not a student"}.
+                </div>
+            </div>
+        );
+    }
 }
